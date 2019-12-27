@@ -6,5 +6,6 @@ namespace PasswordGenerator.Controllers
 {
     interface IController
     {
+        void start();
     }
 }

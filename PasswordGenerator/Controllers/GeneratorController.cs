@@ -4,7 +4,11 @@ using System.Text;
 
 namespace PasswordGenerator.Controllers
 {
-    class GeneratorController
+    class GeneratorController : IController
     {
+        public void start()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
