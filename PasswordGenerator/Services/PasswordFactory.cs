@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace PasswordGenerator.Services
@@ -8,17 +7,41 @@ namespace PasswordGenerator.Services
     {
         public string generateMediumPassword(int passwordLength)
         {
-            throw new NotImplementedException();
+           string charset = "abcdefghijklmnopqrstuvwxyz1234567890";
+            StringBuilder password = new StringBuilder();
+            Random random = new Random();
+
+            for(int i = 0; i < passwordLength; i++)
+            {
+                password.Append(charset[random.Next(charset.Length)]);
+            }
+            return password.ToString();
         }
 
         public string generateSimplePassword(int passwordLength)
         {
-            throw new NotImplementedException();
+            string charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+            StringBuilder password = new StringBuilder();
+            Random random = new Random();
+
+            for (int i = 0; i < passwordLength; i++)
+            {
+                password.Append(charset[random.Next(charset.Length)]);
+            }
+            return password.ToString();
         }
 
         public string generateStrongPassword(int passwordLength)
         {
-            throw new NotImplementedException();
+            string charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?!@#$%^&*";
+            StringBuilder password = new StringBuilder();
+            Random random = new Random();
+
+            for (int i = 0; i < passwordLength; i++)
+            {
+                password.Append(charset[random.Next(charset.Length)]);
+            }
+            return password.ToString();
         }
     }
 }
