@@ -20,6 +20,7 @@ namespace PasswordGenerator.Controllers
         public void start()
         {
             view.sayHello();
+            view.getPasswordDetailsFromUser();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasswordGenerator.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,46 @@ namespace PasswordGenerator.Views
         {
             Console.WriteLine("Password Generator Application.");
             Console.WriteLine("Version: 1.0");
+        }
+
+        public PasswordDetails getPasswordDetailsFromUser()
+        {
+            int passwordLength;
+            PasswordType passwordType;
+            Console.Write("Enter password's length: ");
+
+            while (!int.TryParse(Console.ReadLine(), out passwordLength) || passwordLength < 0)
+            {
+                Console.WriteLine("Invalid password's length!");
+                Console.Write("Enter password's length: ");
+            }
+
+            Console.Write("Enter password's type (simple, medium or strong): ");
+
+            while(!Enum.TryParse(Console.ReadLine(), true, out passwordType) || !Enum.IsDefined(typeof(PasswordType), passwordType))
+            {
+                Console.WriteLine("Invalid password's type!");
+                Console.Write("Enter password's type: ");
+            }
+
+
+            return null;
+
+        }
+
+        public void printPassword(string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        private int getPasswordLength()
+        {
+            throw new NotImplementedException();
+        }
+
+        private PasswordType getPasswordType()
+        {
+            throw new NotImplementedException();
         }
     }
 }
