@@ -6,5 +6,6 @@ namespace PasswordGenerator.Views
 {
     interface IView
     {
+        void sayHello();
     }
 }

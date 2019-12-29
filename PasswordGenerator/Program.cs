@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PasswordGenerator.Controllers;
+using System;
 
 namespace PasswordGenerator
 {
@@ -6,7 +7,8 @@ namespace PasswordGenerator
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            IController controller = new ConsoleController();
+            controller.start();
         }
     }
 }
