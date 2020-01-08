@@ -1,4 +1,5 @@
-﻿using PasswordGenerator.Services;
+﻿using PasswordGenerator.Models;
+using PasswordGenerator.Services;
 using PasswordGenerator.Views;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,27 @@ namespace PasswordGenerator.Controllers
 
         public void start()
         {
+            PasswordDetails passwordDetails;
+            string password;
             view.sayHello();
-            view.getPasswordDetailsFromUser();
+            passwordDetails =  view.getPasswordDetailsFromUser();
+            switch(passwordDetails.passwordType)
+            {
+                case PasswordType.SimplePassword:
+                    password = factory.generateSimplePassword(passwordDetails.PasswordLength);
+                    break;
+                case PasswordType.MediumPassword:
+                    password = factory.generateMediumPassword(passwordDetails.PasswordLength);
+                    break;
+                case PasswordType.StrongPassword:
+                    password = factory.generateStrongPassword(passwordDetails.PasswordLength);
+                    break;
+                default:
+                    password = factory.generateSimplePassword(passwordDetails.PasswordLength);
+                    break;
+            }
+            view.printPassword(password);
+
         }
     }
 }

@@ -44,6 +44,7 @@ namespace PasswordGenerator.Views
         public void printPassword(string password)
         {
             Console.WriteLine($"Generated password: {password}");
+            Console.Read();
         }
 
         private int getPasswordLength()
