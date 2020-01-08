@@ -61,6 +61,7 @@ namespace PasswordGenerator.Views
 
         private PasswordType getPasswordType()
         {
+            
             PasswordType passwordType;
             Console.Write("Enter password's type (simple, medium or strong): ");
             while (!Enum.TryParse(Console.ReadLine(), true, out passwordType) || !Enum.IsDefined(typeof(PasswordType), passwordType))

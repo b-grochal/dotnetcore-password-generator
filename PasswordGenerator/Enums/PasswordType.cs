@@ -1,6 +1,6 @@
 ﻿public enum PasswordType
 {
-    SimplePassword,
-    MediumPassword,
-    StrongPassword
+    Simple = 1,
+    Medium,
+    Strong
 }

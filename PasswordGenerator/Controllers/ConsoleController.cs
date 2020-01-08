@@ -26,13 +26,13 @@ namespace PasswordGenerator.Controllers
             passwordDetails =  view.getPasswordDetailsFromUser();
             switch(passwordDetails.passwordType)
             {
-                case PasswordType.SimplePassword:
+                case PasswordType.Simple:
                     password = factory.generateSimplePassword(passwordDetails.PasswordLength);
                     break;
-                case PasswordType.MediumPassword:
+                case PasswordType.Medium:
                     password = factory.generateMediumPassword(passwordDetails.PasswordLength);
                     break;
-                case PasswordType.StrongPassword:
+                case PasswordType.Strong:
                     password = factory.generateStrongPassword(passwordDetails.PasswordLength);
                     break;
                 default:
