@@ -1,11 +1,32 @@
-﻿using System;
+﻿using PasswordGenerator.Models;
+using System;
 using System.Text;
 
 namespace PasswordGenerator.Services
 {
     class PasswordFactory : IFactory
     {
-        public string generateMediumPassword(int passwordLength)
+
+        public string GeneratePassword(PasswordSettings passwordSettings)
+        {
+            string password = null;
+            switch (passwordSettings.passwordType)
+            {
+                case PasswordType.Simple:
+                    password = GenerateSimplePassword(passwordSettings.PasswordLength);
+                    break;
+                case PasswordType.Medium:
+                    password = GenerateMediumPassword(passwordSettings.PasswordLength);
+                    break;
+                case PasswordType.Strong:
+                    password = GenerateStrongPassword(passwordSettings.PasswordLength);
+                    break;
+            }
+            return password;
+        }
+
+
+        private string GenerateMediumPassword(int passwordLength)
         {
            string charset = "abcdefghijklmnopqrstuvwxyz1234567890";
             StringBuilder password = new StringBuilder();
@@ -18,7 +39,7 @@ namespace PasswordGenerator.Services
             return password.ToString();
         }
 
-        public string generateSimplePassword(int passwordLength)
+        private string GenerateSimplePassword(int passwordLength)
         {
             string charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
             StringBuilder password = new StringBuilder();
@@ -31,7 +52,7 @@ namespace PasswordGenerator.Services
             return password.ToString();
         }
 
-        public string generateStrongPassword(int passwordLength)
+        private string GenerateStrongPassword(int passwordLength)
         {
             string charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?!@#$%^&*";
             StringBuilder password = new StringBuilder();

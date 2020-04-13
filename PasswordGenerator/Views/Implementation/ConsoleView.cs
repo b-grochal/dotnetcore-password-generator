@@ -13,7 +13,7 @@ namespace PasswordGenerator.Views
             Console.WriteLine("Version: 1.0");
         }
 
-        public PasswordDetails getPasswordDetailsFromUser()
+        public PasswordSettings getPasswordDetailsFromUser()
         {
             //int passwordLength;
             //PasswordType passwordType;
@@ -35,7 +35,7 @@ namespace PasswordGenerator.Views
 
 
             //return null;
-            PasswordDetails passwordDetails = new PasswordDetails();
+            PasswordSettings passwordDetails = new PasswordSettings();
             passwordDetails.PasswordLength = getPasswordLength();
             passwordDetails.passwordType = getPasswordType();
             return passwordDetails;

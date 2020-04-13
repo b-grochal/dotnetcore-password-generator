@@ -8,7 +8,7 @@ namespace PasswordGenerator.Views
     interface IView
     {
         void sayHello();
-        PasswordDetails getPasswordDetailsFromUser();
+        PasswordSettings getPasswordDetailsFromUser();
         void printPassword(string password);
     }
 }
