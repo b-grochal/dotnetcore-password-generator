@@ -7,6 +7,6 @@ namespace PasswordGenerator.Models
     class PasswordSettings
     {
         public int PasswordLength { get; set; }
-        public PasswordType passwordType { get; set; }
+        public PasswordType PasswordType { get; set; }
     }
 }

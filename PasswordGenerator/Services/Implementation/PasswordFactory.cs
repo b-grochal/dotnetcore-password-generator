@@ -10,7 +10,7 @@ namespace PasswordGenerator.Services
         public string GeneratePassword(PasswordSettings passwordSettings)
         {
             string password = null;
-            switch (passwordSettings.passwordType)
+            switch (passwordSettings.PasswordType)
             {
                 case PasswordType.Simple:
                     password = GenerateSimplePassword(passwordSettings.PasswordLength);

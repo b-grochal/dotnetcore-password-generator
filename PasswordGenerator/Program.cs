@@ -8,7 +8,7 @@ namespace PasswordGenerator
         static void Main(string[] args)
         {
             IController controller = new ConsoleController();
-            controller.start();
+            controller.Start();
         }
     }
 }

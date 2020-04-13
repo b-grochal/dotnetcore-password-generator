@@ -18,11 +18,11 @@ namespace PasswordGenerator.Controllers
             this.factory = new PasswordFactory();
         }
 
-        public void start()
+        public void Start()
         {
-            view.sayHello();
-            var passwordSettings =  view.getPasswordDetailsFromUser();
-            view.printPassword(factory.GeneratePassword(passwordSettings));
+            view.SayHello();
+            var passwordSettings =  view.GetPasswordDetailsFromUser();
+            view.PrintPassword(factory.GeneratePassword(passwordSettings));
         }
     }
 }

@@ -7,13 +7,13 @@ namespace PasswordGenerator.Views
 {
     class ConsoleView : IView
     {
-        public void sayHello()
+        public void SayHello()
         {
             Console.WriteLine("Password Generator Application.");
             Console.WriteLine("Version: 1.0");
         }
 
-        public PasswordSettings getPasswordDetailsFromUser()
+        public PasswordSettings GetPasswordDetailsFromUser()
         {
             //int passwordLength;
             //PasswordType passwordType;
@@ -36,18 +36,18 @@ namespace PasswordGenerator.Views
 
             //return null;
             PasswordSettings passwordDetails = new PasswordSettings();
-            passwordDetails.PasswordLength = getPasswordLength();
-            passwordDetails.passwordType = getPasswordType();
+            passwordDetails.PasswordLength = GetPasswordLength();
+            passwordDetails.PasswordType = GetPasswordType();
             return passwordDetails;
         }
 
-        public void printPassword(string password)
+        public void PrintPassword(string password)
         {
             Console.WriteLine($"Generated password: {password}");
             Console.Read();
         }
 
-        private int getPasswordLength()
+        private int GetPasswordLength()
         {
             int passwordLength;
             Console.Write("Enter password's length: ");
@@ -59,7 +59,7 @@ namespace PasswordGenerator.Views
             return passwordLength;
         }
 
-        private PasswordType getPasswordType()
+        private PasswordType GetPasswordType()
         {
             
             PasswordType passwordType;
