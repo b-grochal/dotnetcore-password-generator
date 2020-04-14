@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PasswordGenerator.Helpers
 {
-    public class RandomNumberGenerator
+    public class RandomNumberGenerator : IDisposable
     {
         private readonly RNGCryptoServiceProvider rngCryptoServiceProvider;
 
@@ -20,15 +20,21 @@ namespace PasswordGenerator.Helpers
                 throw new ArgumentOutOfRangeException();
 
             byte[] randomGeneratdeBytes = new byte[sizeof(int)];
-            int scale = int.MaxValue;
+            rngCryptoServiceProvider.GetBytes(randomGeneratdeBytes);
+            int randomNumber = BitConverter.ToInt32(randomGeneratdeBytes);
+            return (int)(minValue + Math.Abs((randomNumber % (maxValue - minValue))));
+        }
 
-            while(scale == int.MaxValue)
-            {
-                rngCryptoServiceProvider.GetBytes(randomGeneratdeBytes);
-                scale = BitConverter.ToInt32(randomGeneratdeBytes);
-            }
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-            return (int)(minValue + (maxValue - minValue) * (scale / int.MaxValue));
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+                rngCryptoServiceProvider.Dispose();
         }
     }
 }
