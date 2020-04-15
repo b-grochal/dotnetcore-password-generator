@@ -1,68 +1,118 @@
-﻿using PasswordGenerator.Models;
+﻿using PasswordGenerator.Helpers;
+using PasswordGenerator.Models;
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace PasswordGenerator.Services
 {
-    class PasswordFactory : IFactory
+    class PasswordFactory : IPasswordFactory
     {
+        private readonly string[] charsTable;
+
+        public PasswordFactory()
+        {
+            charsTable = new string[]
+            {
+                "abcdefghijklmnopqrstuvwxyz",
+                "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                "1234567890",
+                "?!@#$%^&*",
+            };
+        }
 
         public string GeneratePassword(PasswordSettings passwordSettings)
         {
-            string password = null;
-            switch (passwordSettings.PasswordType)
+            return passwordSettings.PasswordType switch
             {
-                case PasswordType.Simple:
-                    password = GenerateSimplePassword(passwordSettings.PasswordLength);
-                    break;
-                case PasswordType.Medium:
-                    password = GenerateMediumPassword(passwordSettings.PasswordLength);
-                    break;
-                case PasswordType.Strong:
-                    password = GenerateStrongPassword(passwordSettings.PasswordLength);
-                    break;
-            }
-            return password;
-        }
-
-
-        private string GenerateMediumPassword(int passwordLength)
-        {
-           string charset = "abcdefghijklmnopqrstuvwxyz1234567890";
-            StringBuilder password = new StringBuilder();
-            Random random = new Random();
-
-            for(int i = 0; i < passwordLength; i++)
-            {
-                password.Append(charset[random.Next(charset.Length)]);
-            }
-            return password.ToString();
+                PasswordType.Simple => GenerateSimplePassword(passwordSettings.PasswordLength),
+                PasswordType.Medium => GenerateMediumPassword(passwordSettings.PasswordLength),
+                PasswordType.Strong => GenerateStrongPassword(passwordSettings.PasswordLength),
+                _ => throw new ArgumentException()
+            };
         }
 
         private string GenerateSimplePassword(int passwordLength)
         {
-            string charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-            StringBuilder password = new StringBuilder();
-            Random random = new Random();
+            List<char> passwordChars = new List<char>();
+            int index = 0;
 
-            for (int i = 0; i < passwordLength; i++)
+            using RandomNumberGenerator rng = new RandomNumberGenerator();
+
+            while (index < passwordLength)
             {
-                password.Append(charset[random.Next(charset.Length)]);
+                char randomChar = charsTable[0][rng.GenerateRandomNumber(0, charsTable[0].Length)];
+                if (!passwordChars.Contains(randomChar))
+                {
+                    passwordChars.Add(randomChar);
+                    index++;
+                }
             }
-            return password.ToString();
+            return new string(passwordChars.ToArray());
+
         }
+
+        //Litery (male i duze) + cyfry
+        private string GenerateMediumPassword(int passwordLength)
+        {
+            List<char> passwordChars = new List<char>();
+
+            using RandomNumberGenerator rng = new RandomNumberGenerator();
+
+            //mala litera
+            passwordChars.Add(charsTable[0][rng.GenerateRandomNumber(0, charsTable[0].Length)]);
+            //duza litera
+            passwordChars.Add(charsTable[1][rng.GenerateRandomNumber(0, charsTable[1].Length)]);
+            //cyfra
+            passwordChars.Add(charsTable[2][rng.GenerateRandomNumber(0, charsTable[2].Length)]);
+
+            int index = passwordChars.Count;
+
+            while (index < passwordLength)
+            {
+                string randomCharset = charsTable[rng.GenerateRandomNumber(0, charsTable.Length)];
+                char randomChar = randomCharset[rng.GenerateRandomNumber(0, randomCharset.Length)];
+                if (!passwordChars.Contains(randomChar))
+                {
+                    passwordChars.Add(randomChar);
+                    index++;
+                }
+            }
+            return new string(passwordChars.ToArray());
+
+        }
+
+
 
         private string GenerateStrongPassword(int passwordLength)
         {
-            string charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890?!@#$%^&*";
-            StringBuilder password = new StringBuilder();
-            Random random = new Random();
+            List<char> passwordChars = new List<char>();
 
-            for (int i = 0; i < passwordLength; i++)
+            using RandomNumberGenerator rng = new RandomNumberGenerator();
+
+            //mala litera
+            passwordChars.Add(charsTable[0][rng.GenerateRandomNumber(0, charsTable[0].Length)]);
+            //duza litera
+            passwordChars.Add(charsTable[1][rng.GenerateRandomNumber(0, charsTable[1].Length)]);
+            //cyfra
+            passwordChars.Add(charsTable[2][rng.GenerateRandomNumber(0, charsTable[2].Length)]);
+            //znak specjalny
+            passwordChars.Add(charsTable[3][rng.GenerateRandomNumber(0, charsTable[3].Length)]);
+
+            int index = passwordChars.Count;
+
+            while (index < passwordLength)
             {
-                password.Append(charset[random.Next(charset.Length)]);
+                string randomCharset = charsTable[rng.GenerateRandomNumber(0, charsTable.Length)];
+                char randomChar = randomCharset[rng.GenerateRandomNumber(0, randomCharset.Length)];
+                if (!passwordChars.Contains(randomChar))
+                {
+                    passwordChars.Add(randomChar);
+                    index++;
+                }
             }
-            return password.ToString();
+            return new string(passwordChars.ToArray());
+
         }
     }
 }

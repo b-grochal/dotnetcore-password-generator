@@ -10,7 +10,7 @@ namespace PasswordGenerator.Controllers
     class ConsoleController : IController
     {
         private IView view;
-        private IFactory factory;
+        private IPasswordFactory factory;
 
         public ConsoleController()
         {
