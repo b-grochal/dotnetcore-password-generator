@@ -48,7 +48,7 @@ namespace PasswordGenerator.Services
                     index++;
                 }
             }
-            return new string(passwordChars.ToArray());
+            return passwordChars.Shuffle().GenerateString();
 
         }
 
@@ -78,7 +78,7 @@ namespace PasswordGenerator.Services
                     index++;
                 }
             }
-            return new string(passwordChars.ToArray());
+            return passwordChars.Shuffle().GenerateString();
 
         }
 
@@ -111,7 +111,7 @@ namespace PasswordGenerator.Services
                     index++;
                 }
             }
-            return new string(passwordChars.ToArray());
+            return passwordChars.Shuffle().GenerateString();
 
         }
     }
