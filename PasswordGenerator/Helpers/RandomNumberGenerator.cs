@@ -17,7 +17,7 @@ namespace PasswordGenerator.Helpers
         public int GenerateRandomNumber(int minValue, int maxValue)
         {
             if (minValue >= maxValue)
-                throw new ArgumentOutOfRangeException();
+                throw new ArgumentException();
 
             byte[] randomGeneratdeBytes = new byte[sizeof(int)];
             rngCryptoServiceProvider.GetBytes(randomGeneratdeBytes);

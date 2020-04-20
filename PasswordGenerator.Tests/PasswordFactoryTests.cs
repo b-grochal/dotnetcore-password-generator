@@ -9,14 +9,6 @@ namespace PasswordGenerator.Tests
     [TestFixture]
     class PasswordFactoryTests
     {
-        private PasswordFactory passwordFactory;
-
-        [SetUp]
-        public void SetUp()
-        {
-            passwordFactory = new PasswordFactory();
-        }
-
         [Test]
         public void GeneratePassword_WhenInputPasswordTypeIsSimple_ShouldReturnSimplePassword()
         {
