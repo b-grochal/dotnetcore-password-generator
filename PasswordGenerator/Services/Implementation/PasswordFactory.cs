@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PasswordGenerator.Services
 {
-    class PasswordFactory : IPasswordFactory
+    public class PasswordFactory : IPasswordFactory
     {
         private readonly string[] charsTable;
 

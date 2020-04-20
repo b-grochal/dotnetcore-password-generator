@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PasswordGenerator.Models
 {
-    class PasswordSettings
+    public class PasswordSettings
     {
         public int PasswordLength { get; set; }
         public PasswordType PasswordType { get; set; }

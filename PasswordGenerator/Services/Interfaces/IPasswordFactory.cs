@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PasswordGenerator.Services
 {
-    interface IPasswordFactory
+    public interface IPasswordFactory
     {
         string GeneratePassword(PasswordSettings passwordSettings);
     }
