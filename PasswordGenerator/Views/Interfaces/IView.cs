@@ -9,6 +9,6 @@ namespace PasswordGenerator.Views
     {
         void SayHello();
         PasswordSettings GetPasswordDetailsFromUser();
-        void PrintPassword(string password);
+        void ShowPassword(string password);
     }
 }

@@ -22,7 +22,7 @@ namespace PasswordGenerator.Controllers
         {
             view.SayHello();
             var passwordSettings =  view.GetPasswordDetailsFromUser();
-            view.PrintPassword(factory.GeneratePassword(passwordSettings));
+            view.ShowPassword(factory.GeneratePassword(passwordSettings));
         }
     }
 }
