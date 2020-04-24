@@ -32,6 +32,7 @@ namespace PasswordGenerator.Services
             };
         }
 
+        //małe litery
         private string GenerateSimplePassword(int passwordLength)
         {
             List<char> passwordChars = new List<char>();
