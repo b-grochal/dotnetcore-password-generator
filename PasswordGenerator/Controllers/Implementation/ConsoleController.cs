@@ -1,4 +1,5 @@
-﻿using PasswordGenerator.Models;
+﻿using PasswordGenerator.Enums;
+using PasswordGenerator.Models;
 using PasswordGenerator.Services;
 using PasswordGenerator.Views;
 using System;
@@ -20,9 +21,21 @@ namespace PasswordGenerator.Controllers
 
         public void Start()
         {
-            view.SayHello();
-            var passwordSettings =  view.GetPasswordDetailsFromUser();
-            view.ShowPassword(factory.GeneratePassword(passwordSettings));
+            UserCommand? userCommand = null;
+            while(userCommand != UserCommand.Exit)
+            {
+                userCommand = view.GetCommandFromUser();
+                switch(userCommand)
+                {
+                    case UserCommand.Generate:
+                        var passwordSettings = view.GetPasswordDetailsFromUser();
+                        view.ShowPassword(factory.GeneratePassword(passwordSettings));
+                        break;
+                    case UserCommand.Help:
+                        view.ShowHelp();
+                        break;
+                }
+            }   
         }
     }
 }

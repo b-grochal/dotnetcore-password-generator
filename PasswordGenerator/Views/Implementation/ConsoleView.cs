@@ -1,4 +1,5 @@
-﻿using PasswordGenerator.Models;
+﻿using PasswordGenerator.Enums;
+using PasswordGenerator.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,11 +8,23 @@ namespace PasswordGenerator.Views
 {
     class ConsoleView : IView
     {
-        public void SayHello()
+        public UserCommand GetCommandFromUser()
         {
             ShowLogo();
-            Console.WriteLine("Password Generator Application.");
-            Console.WriteLine("Version: 1.0");
+            Console.WriteLine("Type one of commands listed below:");
+            Console.WriteLine("- generate to generate new password");
+            Console.WriteLine("- help to display user's help");
+            Console.WriteLine("- exit to close application");
+            Console.Write("Command: ");
+
+            UserCommand userCommand;
+
+            while (!Enum.TryParse(Console.ReadLine(), true, out userCommand) || !Enum.IsDefined(typeof(UserCommand), userCommand))
+            {
+                Console.WriteLine("Invalid command! Type command once again.");
+                Console.Write("Command: ");
+            }
+            return userCommand;
         }
 
         public PasswordSettings GetPasswordDetailsFromUser()
