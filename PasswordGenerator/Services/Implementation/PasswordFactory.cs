@@ -9,6 +9,7 @@ namespace PasswordGenerator.Services
     public class PasswordFactory : IPasswordFactory
     {
         private readonly string[] charsTable;
+        private readonly IRandomNumberGenerator randomNumberGenerator;
 
         public PasswordFactory()
         {
@@ -19,6 +20,7 @@ namespace PasswordGenerator.Services
                 "1234567890",
                 "?!@#$%^&*",
             };
+            randomNumberGenerator = new RandomNumberGenerator();
         }
 
         public string GeneratePassword(PasswordSettings passwordSettings)
@@ -38,11 +40,9 @@ namespace PasswordGenerator.Services
             List<char> passwordChars = new List<char>();
             int index = 0;
 
-            using RandomNumberGenerator rng = new RandomNumberGenerator();
-
             while (index < passwordLength)
             {
-                char randomChar = charsTable[0][rng.GenerateRandomNumber(0, charsTable[0].Length)];
+                char randomChar = charsTable[0][randomNumberGenerator.GenerateRandomNumber(0, charsTable[0].Length)];
                 if (!passwordChars.Contains(randomChar))
                 {
                     passwordChars.Add(randomChar);
@@ -58,21 +58,19 @@ namespace PasswordGenerator.Services
         {
             List<char> passwordChars = new List<char>();
 
-            using RandomNumberGenerator rng = new RandomNumberGenerator();
-
             //mala litera
-            passwordChars.Add(charsTable[0][rng.GenerateRandomNumber(0, charsTable[0].Length)]);
+            passwordChars.Add(charsTable[0][randomNumberGenerator.GenerateRandomNumber(0, charsTable[0].Length)]);
             //duza litera
-            passwordChars.Add(charsTable[1][rng.GenerateRandomNumber(0, charsTable[1].Length)]);
+            passwordChars.Add(charsTable[1][randomNumberGenerator.GenerateRandomNumber(0, charsTable[1].Length)]);
             //cyfra
-            passwordChars.Add(charsTable[2][rng.GenerateRandomNumber(0, charsTable[2].Length)]);
+            passwordChars.Add(charsTable[2][randomNumberGenerator.GenerateRandomNumber(0, charsTable[2].Length)]);
 
             int index = passwordChars.Count;
 
             while (index < passwordLength)
             {
-                string randomCharset = charsTable[rng.GenerateRandomNumber(0, charsTable.Length)];
-                char randomChar = randomCharset[rng.GenerateRandomNumber(0, randomCharset.Length)];
+                string randomCharset = charsTable[randomNumberGenerator.GenerateRandomNumber(0, charsTable.Length)];
+                char randomChar = randomCharset[randomNumberGenerator.GenerateRandomNumber(0, randomCharset.Length)];
                 if (!passwordChars.Contains(randomChar))
                 {
                     passwordChars.Add(randomChar);
@@ -89,23 +87,21 @@ namespace PasswordGenerator.Services
         {
             List<char> passwordChars = new List<char>();
 
-            using RandomNumberGenerator rng = new RandomNumberGenerator();
-
             //mala litera
-            passwordChars.Add(charsTable[0][rng.GenerateRandomNumber(0, charsTable[0].Length)]);
+            passwordChars.Add(charsTable[0][randomNumberGenerator.GenerateRandomNumber(0, charsTable[0].Length)]);
             //duza litera
-            passwordChars.Add(charsTable[1][rng.GenerateRandomNumber(0, charsTable[1].Length)]);
+            passwordChars.Add(charsTable[1][randomNumberGenerator.GenerateRandomNumber(0, charsTable[1].Length)]);
             //cyfra
-            passwordChars.Add(charsTable[2][rng.GenerateRandomNumber(0, charsTable[2].Length)]);
+            passwordChars.Add(charsTable[2][randomNumberGenerator.GenerateRandomNumber(0, charsTable[2].Length)]);
             //znak specjalny
-            passwordChars.Add(charsTable[3][rng.GenerateRandomNumber(0, charsTable[3].Length)]);
+            passwordChars.Add(charsTable[3][randomNumberGenerator.GenerateRandomNumber(0, charsTable[3].Length)]);
 
             int index = passwordChars.Count;
 
             while (index < passwordLength)
             {
-                string randomCharset = charsTable[rng.GenerateRandomNumber(0, charsTable.Length)];
-                char randomChar = randomCharset[rng.GenerateRandomNumber(0, randomCharset.Length)];
+                string randomCharset = charsTable[randomNumberGenerator.GenerateRandomNumber(0, charsTable.Length)];
+                char randomChar = randomCharset[randomNumberGenerator.GenerateRandomNumber(0, randomCharset.Length)];
                 if (!passwordChars.Contains(randomChar))
                 {
                     passwordChars.Add(randomChar);
@@ -113,7 +109,6 @@ namespace PasswordGenerator.Services
                 }
             }
             return passwordChars.Shuffle().GenerateString();
-
         }
     }
 }

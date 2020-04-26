@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PasswordGenerator.Helpers
 {
-    public class RandomNumberGenerator : IDisposable
+    public class RandomNumberGenerator : IDisposable, IRandomNumberGenerator
     {
         private readonly RNGCryptoServiceProvider rngCryptoServiceProvider;
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PasswordGenerator.Controllers
 {
-    interface IController
+    public interface IController
     {
         void Start();
     }
