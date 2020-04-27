@@ -11,6 +11,7 @@ namespace PasswordGenerator.Views
         public UserCommand GetCommandFromUser()
         {
             Console.Clear();
+            FlushConsoleKeyBuffer();
             ShowLogo();
             Console.WriteLine("Type one of commands listed below:");
             Console.WriteLine("- generate to generate new password");
@@ -42,7 +43,7 @@ namespace PasswordGenerator.Views
             Console.Clear();
             Console.WriteLine($"Generated password: {password}");
             Console.WriteLine("Press any key to continue.");
-            Console.Read();
+            Console.ReadKey();
         }
 
         public void ShowHelp()
@@ -55,7 +56,7 @@ namespace PasswordGenerator.Views
             Console.WriteLine("- medium -> consists of letters (lowercase and uppercase) and numbers");
             Console.WriteLine("- strong -> consists of letters (lowercase and uppercase), numbers and special characters");
             Console.WriteLine("Press any key to continue.");
-            Console.Read();
+            Console.ReadKey();
         }
 
         private int GetPasswordLength()
@@ -99,6 +100,14 @@ namespace PasswordGenerator.Views
             foreach(string row in logo)
             {
                 Console.WriteLine(row);
+            }
+        }
+
+        private void FlushConsoleKeyBuffer()
+        {
+            while (Console.KeyAvailable)
+            {
+                Console.ReadKey(true);
             }
         }
     }
