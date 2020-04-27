@@ -1,4 +1,4 @@
-﻿namespace PasswordGenerator.Helpers
+﻿namespace PasswordGenerator.Services
 {
     public interface IRandomNumberGenerator
     {

@@ -13,10 +13,10 @@ namespace PasswordGenerator.Controllers
         private IView view;
         private IPasswordFactory factory;
 
-        public ConsoleController()
+        public ConsoleController(IView view, IPasswordFactory passwordFactory)
         {
-            this.view = new ConsoleView();
-            this.factory = new PasswordFactory();
+            this.view = view;
+            this.factory = passwordFactory;
         }
 
         public void Start()

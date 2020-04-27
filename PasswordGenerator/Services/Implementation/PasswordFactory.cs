@@ -11,7 +11,7 @@ namespace PasswordGenerator.Services
         private readonly string[] charsTable;
         private readonly IRandomNumberGenerator randomNumberGenerator;
 
-        public PasswordFactory()
+        public PasswordFactory(IRandomNumberGenerator randomNumberGenerator)
         {
             charsTable = new string[]
             {
@@ -20,7 +20,7 @@ namespace PasswordGenerator.Services
                 "1234567890",
                 "?!@#$%^&*",
             };
-            randomNumberGenerator = new RandomNumberGenerator();
+            this.randomNumberGenerator = randomNumberGenerator;
         }
 
         public string GeneratePassword(PasswordSettings passwordSettings)

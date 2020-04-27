@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace PasswordGenerator.Helpers
+namespace PasswordGenerator.Services
 {
     public class RandomNumberGenerator : IDisposable, IRandomNumberGenerator
     {

@@ -1,4 +1,6 @@
-﻿using PasswordGenerator.Controllers;
+﻿using Autofac;
+using PasswordGenerator.Configuration;
+using PasswordGenerator.Controllers;
 using System;
 
 namespace PasswordGenerator
@@ -7,8 +9,13 @@ namespace PasswordGenerator
     {
         static void Main(string[] args)
         {
-            IController controller = new ConsoleController();
-            controller.Start();
+            var container = ContainerConfiguration.Configure();
+
+            using(var scope = container.BeginLifetimeScope())
+            {
+                var controller = scope.Resolve<IController>();
+                controller.Start();
+            }
         }
     }
 }
