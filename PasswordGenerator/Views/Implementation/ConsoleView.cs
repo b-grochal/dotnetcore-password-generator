@@ -10,6 +10,7 @@ namespace PasswordGenerator.Views
     {
         public UserCommand GetCommandFromUser()
         {
+            Console.Clear();
             ShowLogo();
             Console.WriteLine("Type one of commands listed below:");
             Console.WriteLine("- generate to generate new password");
@@ -29,6 +30,7 @@ namespace PasswordGenerator.Views
 
         public PasswordSettings GetPasswordDetailsFromUser()
         {
+            Console.Clear();
             PasswordSettings passwordDetails = new PasswordSettings();
             passwordDetails.PasswordLength = GetPasswordLength();
             passwordDetails.PasswordType = GetPasswordType();
@@ -37,18 +39,23 @@ namespace PasswordGenerator.Views
 
         public void ShowPassword(string password)
         {
+            Console.Clear();
             Console.WriteLine($"Generated password: {password}");
+            Console.WriteLine("Press any key to continue.");
             Console.Read();
         }
 
         public void ShowHelp()
         {
+            Console.Clear();
             Console.WriteLine("Password Generator version 1.0\n");
             Console.WriteLine("Application lets generate password based on type chose by user.");
             Console.WriteLine("Available password types:");
             Console.WriteLine("- simple -> consists of letters (only lowercase)");
             Console.WriteLine("- medium -> consists of letters (lowercase and uppercase) and numbers");
             Console.WriteLine("- strong -> consists of letters (lowercase and uppercase), numbers and special characters");
+            Console.WriteLine("Press any key to continue.");
+            Console.Read();
         }
 
         private int GetPasswordLength()
@@ -65,7 +72,6 @@ namespace PasswordGenerator.Views
 
         private PasswordType GetPasswordType()
         {
-            
             PasswordType passwordType;
             Console.Write("Enter password's type (simple, medium or strong): ");
             while (!Enum.TryParse(Console.ReadLine(), true, out passwordType) || !Enum.IsDefined(typeof(PasswordType), passwordType))
