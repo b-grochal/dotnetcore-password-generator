@@ -1,0 +1,1 @@
+dotnet publish PasswordGenerator/PasswordGenerator.csproj -r linux-x64
