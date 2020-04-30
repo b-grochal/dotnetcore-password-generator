@@ -16,7 +16,7 @@ namespace PasswordGenerator.Services
 
         public int GenerateRandomNumber(int minValue, int maxValue)
         {
-            if (minValue >= maxValue)
+            if (minValue >= maxValue || minValue < 0 || maxValue < 0)
                 throw new ArgumentException();
 
             byte[] randomGeneratdeBytes = new byte[sizeof(int)];
