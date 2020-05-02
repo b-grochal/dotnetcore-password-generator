@@ -1,1 +1,1 @@
-dotnet publish PasswordGenerator/PasswordGenerator.csproj -r win10-x64
+dotnet publish PasswordGenerator/PasswordGenerator.csproj -r win10-x64 -c Release -o E:\PasswordGenerator_Win10
