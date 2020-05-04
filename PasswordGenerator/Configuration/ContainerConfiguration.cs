@@ -8,8 +8,17 @@ using System.Text;
 
 namespace PasswordGenerator.Configuration
 {
+    /// <summary>
+    /// Provides dependency injection container configuration. 
+    /// </summary>
     public static class ContainerConfiguration
     {
+        #region Public methods
+
+        /// <summary>
+        /// Configures dependency injection container.
+        /// </summary>
+        /// <returns>Dependency injection container.</returns>
         public static IContainer Configure()
         {
             var builder = new ContainerBuilder();
@@ -21,5 +30,7 @@ namespace PasswordGenerator.Configuration
 
             return builder.Build();
         }
+
+        #endregion Public methods
     }
 }

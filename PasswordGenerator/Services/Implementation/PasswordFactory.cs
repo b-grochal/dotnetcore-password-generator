@@ -1,4 +1,4 @@
-﻿using PasswordGenerator.Helpers;
+﻿using PasswordGenerator.Extensions;
 using PasswordGenerator.Models;
 using System;
 using System.Collections.Generic;
@@ -6,11 +6,31 @@ using System.Text;
 
 namespace PasswordGenerator.Services
 {
+    /// <summary>
+    /// Represents factory responsible for generating different passwords.
+    /// </summary>
     public class PasswordFactory : IPasswordFactory
     {
+        #region Fields
+
+        /// <summary>
+        /// Valid characters used to generate password.
+        /// </summary>
         private readonly string[] charsTable;
+
+        /// <summary>
+        /// Random number generator.
+        /// </summary>
         private readonly IRandomNumberGenerator randomNumberGenerator;
 
+        #endregion Fields
+
+        #region Ctors
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PasswordFactory"/> class.
+        /// </summary>
+        /// <param name="randomNumberGenerator">Random number generator.</param>
         public PasswordFactory(IRandomNumberGenerator randomNumberGenerator)
         {
             charsTable = new string[]
@@ -23,6 +43,15 @@ namespace PasswordGenerator.Services
             this.randomNumberGenerator = randomNumberGenerator;
         }
 
+        #endregion Ctors
+
+        #region Public methods
+
+        /// <summary>
+        /// Generates password of passed type.
+        /// </summary>
+        /// <param name="passwordSettings">Password's type.</param>
+        /// <returns>Generated password.</returns>
         public string GeneratePassword(PasswordSettings passwordSettings)
         {
             return passwordSettings.PasswordType switch
@@ -34,7 +63,15 @@ namespace PasswordGenerator.Services
             };
         }
 
-        //małe litery
+        #endregion Public methods
+
+        #region Private methods
+
+        /// <summary>
+        /// Generates simple password.
+        /// </summary>
+        /// <param name="passwordLength">Length of password.</param>
+        /// <returns>Generated password.</returns>
         private string GenerateSimplePassword(int passwordLength)
         {
             List<char> passwordChars = new List<char>();
@@ -53,16 +90,17 @@ namespace PasswordGenerator.Services
 
         }
 
-        //Litery (male i duze) + cyfry
+        /// <summary>
+        /// Generates medium password.
+        /// </summary>
+        /// <param name="passwordLength">Length of password.</param>
+        /// <returns>Generated password.</returns>
         private string GenerateMediumPassword(int passwordLength)
         {
             List<char> passwordChars = new List<char>();
 
-            //mala litera
             passwordChars.Add(charsTable[0][randomNumberGenerator.GenerateRandomNumber(0, charsTable[0].Length)]);
-            //duza litera
             passwordChars.Add(charsTable[1][randomNumberGenerator.GenerateRandomNumber(0, charsTable[1].Length)]);
-            //cyfra
             passwordChars.Add(charsTable[2][randomNumberGenerator.GenerateRandomNumber(0, charsTable[2].Length)]);
 
             int index = passwordChars.Count;
@@ -81,19 +119,18 @@ namespace PasswordGenerator.Services
 
         }
 
-
-
+        /// <summary>
+        /// Generates strong password.
+        /// </summary>
+        /// <param name="passwordLength">Length of password.</param>
+        /// <returns>Generated password.</returns>
         private string GenerateStrongPassword(int passwordLength)
         {
             List<char> passwordChars = new List<char>();
 
-            //mala litera
             passwordChars.Add(charsTable[0][randomNumberGenerator.GenerateRandomNumber(0, charsTable[0].Length)]);
-            //duza litera
             passwordChars.Add(charsTable[1][randomNumberGenerator.GenerateRandomNumber(0, charsTable[1].Length)]);
-            //cyfra
             passwordChars.Add(charsTable[2][randomNumberGenerator.GenerateRandomNumber(0, charsTable[2].Length)]);
-            //znak specjalny
             passwordChars.Add(charsTable[3][randomNumberGenerator.GenerateRandomNumber(0, charsTable[3].Length)]);
 
             int index = passwordChars.Count;
@@ -110,5 +147,7 @@ namespace PasswordGenerator.Services
             }
             return passwordChars.Shuffle().GenerateString();
         }
+
+        #endregion Private methods
     }
 }

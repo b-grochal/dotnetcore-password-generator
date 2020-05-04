@@ -5,17 +5,25 @@ using System;
 
 namespace PasswordGenerator
 {
+    /// <summary>
+    /// Application's main class.
+    /// </summary>
     class Program
     {
-        static void Main(string[] args)
+        #region Private methods
+
+        /// <summary>
+        /// Application's main method.
+        /// </summary>
+        static void Main()
         {
             var container = ContainerConfiguration.Configure();
 
-            using(var scope = container.BeginLifetimeScope())
-            {
-                var controller = scope.Resolve<IController>();
-                controller.Start();
-            }
+            using var scope = container.BeginLifetimeScope();
+            var controller = scope.Resolve<IController>();
+            controller.Start();
         }
+
+        #endregion Private methods
     }
 }

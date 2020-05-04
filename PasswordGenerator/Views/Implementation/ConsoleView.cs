@@ -1,13 +1,21 @@
-﻿using PasswordGenerator.Enums;
-using PasswordGenerator.Models;
+﻿using PasswordGenerator.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace PasswordGenerator.Views
 {
+    /// <summary>
+    /// Represents console user interface.
+    /// </summary>
     class ConsoleView : IView
     {
+        #region Public methods
+
+        /// <summary>
+        /// Gets command from user.
+        /// </summary>
+        /// <returns>User's command.</returns>
         public UserCommand GetCommandFromUser()
         {
             Console.Clear();
@@ -15,7 +23,7 @@ namespace PasswordGenerator.Views
             ShowLogo();
             Console.WriteLine("Type one of commands listed below:");
             Console.WriteLine("- generate to generate new password");
-            Console.WriteLine("- help to display user's help");
+            Console.WriteLine("- help to display application's description");
             Console.WriteLine("- exit to close application");
             Console.Write("Command: ");
 
@@ -29,15 +37,25 @@ namespace PasswordGenerator.Views
             return userCommand;
         }
 
+        /// <summary>
+        /// Gets password's details from user.
+        /// </summary>
+        /// <returns>Password's details.</returns>
         public PasswordSettings GetPasswordDetailsFromUser()
         {
             Console.Clear();
-            PasswordSettings passwordDetails = new PasswordSettings();
-            passwordDetails.PasswordLength = GetPasswordLength();
-            passwordDetails.PasswordType = GetPasswordType();
+            PasswordSettings passwordDetails = new PasswordSettings
+            {
+                PasswordLength = GetPasswordLength(),
+                PasswordType = GetPasswordType()
+            };
             return passwordDetails;
         }
 
+        /// <summary>
+        /// Displays password.
+        /// </summary>
+        /// <param name="password">Password to display.</param>
         public void ShowPassword(string password)
         {
             Console.Clear();
@@ -46,11 +64,14 @@ namespace PasswordGenerator.Views
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Shows help for user.
+        /// </summary>
         public void ShowHelp()
         {
             Console.Clear();
             Console.WriteLine("Password Generator version 1.0\n");
-            Console.WriteLine("Application lets generate password based on type chose by user.");
+            Console.WriteLine("Application lets generate password based on type chosen by user.");
             Console.WriteLine("Available password types:");
             Console.WriteLine("- simple -> consists of letters (only lowercase)");
             Console.WriteLine("- medium -> consists of letters (lowercase and uppercase) and numbers");
@@ -59,6 +80,14 @@ namespace PasswordGenerator.Views
             Console.ReadKey();
         }
 
+        #endregion Public methods
+
+        #region Private methods
+
+        /// <summary>
+        /// Gets password's length from user.
+        /// </summary>
+        /// <returns>Password's length.</returns>
         private int GetPasswordLength()
         {
             int passwordLength;
@@ -71,6 +100,10 @@ namespace PasswordGenerator.Views
             return passwordLength;
         }
 
+        /// <summary>
+        /// Gets password's type from user.
+        /// </summary>
+        /// <returns>Password's type.</returns>
         private PasswordType GetPasswordType()
         {
             PasswordType passwordType;
@@ -83,6 +116,9 @@ namespace PasswordGenerator.Views
             return passwordType;
         }
 
+        /// <summary>
+        /// Displays application logo in cosole.
+        /// </summary>
         private void ShowLogo()
         {
             string[] logo = new string[]
@@ -103,6 +139,9 @@ namespace PasswordGenerator.Views
             }
         }
 
+        /// <summary>
+        /// Flushes console key buffer.
+        /// </summary>
         private void FlushConsoleKeyBuffer()
         {
             while (Console.KeyAvailable)
@@ -110,5 +149,7 @@ namespace PasswordGenerator.Views
                 Console.ReadKey(true);
             }
         }
+
+        #endregion Private methods
     }
 }

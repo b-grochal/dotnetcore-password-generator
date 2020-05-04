@@ -1,5 +1,4 @@
-﻿using PasswordGenerator.Enums;
-using PasswordGenerator.Models;
+﻿using PasswordGenerator.Models;
 using PasswordGenerator.Services;
 using PasswordGenerator.Views;
 using System;
@@ -8,17 +7,45 @@ using System.Text;
 
 namespace PasswordGenerator.Controllers
 {
+    /// <summary>
+    /// Represents application's controller.
+    /// </summary>
     class ConsoleController : IController
     {
-        private IView view;
-        private IPasswordFactory factory;
+        #region Fields
 
+        /// <summary>
+        /// Application's user interface.
+        /// </summary>
+        private readonly IView view;
+
+        /// <summary>
+        /// Password factory responsible for generating passwords.
+        /// </summary>
+        private readonly IPasswordFactory factory;
+
+        #endregion Fields
+
+        #region Ctors
+
+        /// <summary>
+        /// Initializes new instance of the <see cref="ConsoleController"/> class.
+        /// </summary>
+        /// <param name="view">Application's view.</param>
+        /// <param name="passwordFactory">Password factory.</param>
         public ConsoleController(IView view, IPasswordFactory passwordFactory)
         {
             this.view = view;
             this.factory = passwordFactory;
         }
 
+        #endregion Ctors
+
+        #region Public methods
+
+        /// <summary>
+        /// Runs the application.
+        /// </summary>
         public void Start()
         {
             UserCommand? userCommand = null;
@@ -37,5 +64,7 @@ namespace PasswordGenerator.Controllers
                 }
             }   
         }
+
+        #endregion Public methods
     }
 }
