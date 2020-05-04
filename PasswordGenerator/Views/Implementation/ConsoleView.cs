@@ -92,7 +92,7 @@ namespace PasswordGenerator.Views
         {
             int passwordLength;
             Console.Write("Enter password's length: ");
-            while (!int.TryParse(Console.ReadLine(), out passwordLength) || passwordLength < 0)
+            while (!int.TryParse(Console.ReadLine(), out passwordLength) || passwordLength <= 0)
             {
                 Console.WriteLine("Invalid password's length!");
                 Console.Write("Enter password's length: ");
@@ -107,11 +107,11 @@ namespace PasswordGenerator.Views
         private PasswordType GetPasswordType()
         {
             PasswordType passwordType;
-            Console.Write("Enter password's type (simple, medium or strong): ");
+            Console.Write("Choose password's type (simple, medium or strong): ");
             while (!Enum.TryParse(Console.ReadLine(), true, out passwordType) || !Enum.IsDefined(typeof(PasswordType), passwordType))
             {
                 Console.WriteLine("Invalid password's type!");
-                Console.Write("Enter password's type: ");
+                Console.Write("Choose password's type (simple, medium or strong): ");
             }
             return passwordType;
         }
