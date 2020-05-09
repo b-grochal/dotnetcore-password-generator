@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using PasswordGenerator.Controllers;
 using PasswordGenerator.Services;
+using PasswordGenerator.Services.Implementation;
+using PasswordGenerator.Services.Interfaces;
 using PasswordGenerator.Views;
 using System;
 using System.Collections.Generic;
@@ -27,6 +29,7 @@ namespace PasswordGenerator.Configuration
             builder.RegisterType<ConsoleController>().As<IController>();
             builder.RegisterType<PasswordFactory>().As<IPasswordFactory>();
             builder.RegisterType<RandomNumberGenerator>().As<IRandomNumberGenerator>();
+            builder.RegisterType<PasswordCharsetFactory>().As<IPasswordCharsetFactory>();
 
             return builder.Build();
         }

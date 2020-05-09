@@ -1,5 +1,6 @@
 ﻿using PasswordGenerator.Extensions;
 using PasswordGenerator.Models;
+using PasswordGenerator.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,9 +15,9 @@ namespace PasswordGenerator.Services
         #region Fields
 
         /// <summary>
-        /// Valid characters used to generate password.
+        /// Passwords' charsets factory.
         /// </summary>
-        private readonly string[] charsTable;
+        private readonly IPasswordCharsetFactory passwordCharsetFactory;
 
         /// <summary>
         /// Random number generator.
@@ -31,16 +32,11 @@ namespace PasswordGenerator.Services
         /// Initializes a new instance of the <see cref="PasswordFactory"/> class.
         /// </summary>
         /// <param name="randomNumberGenerator">Random number generator.</param>
-        public PasswordFactory(IRandomNumberGenerator randomNumberGenerator)
+        /// <param name="passwordCharsetFactory">Passwords' charsets factory.</param>
+        public PasswordFactory(IRandomNumberGenerator randomNumberGenerator, IPasswordCharsetFactory passwordCharsetFactory)
         {
-            charsTable = new string[]
-            {
-                "abcdefghijklmnopqrstuvwxyz",
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-                "1234567890",
-                "?!@#$%^&*",
-            };
             this.randomNumberGenerator = randomNumberGenerator;
+            this.passwordCharsetFactory = passwordCharsetFactory;
         }
 
         #endregion Ctors
@@ -78,11 +74,19 @@ namespace PasswordGenerator.Services
         private string GenerateSimplePassword(int passwordLength)
         {
             List<char> passwordChars = new List<char>();
-            int index = 0;
+            var passwordCharset = passwordCharsetFactory.GetSimplePasswordCharset();
+
+            foreach(string s in passwordCharset)
+            {
+                passwordChars.Add(s[randomNumberGenerator.GenerateRandomNumber(0, s.Length)]);
+            }
+
+            int index = passwordChars.Count;
 
             while (index < passwordLength)
             {
-                char randomChar = charsTable[0][randomNumberGenerator.GenerateRandomNumber(0, charsTable[0].Length)];
+                string randomCharset = passwordCharset[randomNumberGenerator.GenerateRandomNumber(0, passwordCharset.Length)];
+                char randomChar = randomCharset[randomNumberGenerator.GenerateRandomNumber(0, randomCharset.Length)];
                 if (!passwordChars.Contains(randomChar))
                 {
                     passwordChars.Add(randomChar);
@@ -101,16 +105,18 @@ namespace PasswordGenerator.Services
         private string GenerateMediumPassword(int passwordLength)
         {
             List<char> passwordChars = new List<char>();
+            var passwordCharset = passwordCharsetFactory.GetMediumPasswordCharset();
 
-            passwordChars.Add(charsTable[0][randomNumberGenerator.GenerateRandomNumber(0, charsTable[0].Length)]);
-            passwordChars.Add(charsTable[1][randomNumberGenerator.GenerateRandomNumber(0, charsTable[1].Length)]);
-            passwordChars.Add(charsTable[2][randomNumberGenerator.GenerateRandomNumber(0, charsTable[2].Length)]);
+            foreach (string s in passwordCharset)
+            {
+                passwordChars.Add(s[randomNumberGenerator.GenerateRandomNumber(0, s.Length)]);
+            }
 
             int index = passwordChars.Count;
 
             while (index < passwordLength)
             {
-                string randomCharset = charsTable[randomNumberGenerator.GenerateRandomNumber(0, charsTable.Length-1)];
+                string randomCharset = passwordCharset[randomNumberGenerator.GenerateRandomNumber(0, passwordCharset.Length)];
                 char randomChar = randomCharset[randomNumberGenerator.GenerateRandomNumber(0, randomCharset.Length)];
                 if (!passwordChars.Contains(randomChar))
                 {
@@ -130,17 +136,18 @@ namespace PasswordGenerator.Services
         private string GenerateStrongPassword(int passwordLength)
         {
             List<char> passwordChars = new List<char>();
+            var passwordCharset = passwordCharsetFactory.GetStrongPasswordCharset();
 
-            passwordChars.Add(charsTable[0][randomNumberGenerator.GenerateRandomNumber(0, charsTable[0].Length)]);
-            passwordChars.Add(charsTable[1][randomNumberGenerator.GenerateRandomNumber(0, charsTable[1].Length)]);
-            passwordChars.Add(charsTable[2][randomNumberGenerator.GenerateRandomNumber(0, charsTable[2].Length)]);
-            passwordChars.Add(charsTable[3][randomNumberGenerator.GenerateRandomNumber(0, charsTable[3].Length)]);
+            foreach (string s in passwordCharset)
+            {
+                passwordChars.Add(s[randomNumberGenerator.GenerateRandomNumber(0, s.Length)]);
+            }
 
             int index = passwordChars.Count;
 
             while (index < passwordLength)
             {
-                string randomCharset = charsTable[randomNumberGenerator.GenerateRandomNumber(0, charsTable.Length)];
+                string randomCharset = passwordCharset[randomNumberGenerator.GenerateRandomNumber(0, passwordCharset.Length)];
                 char randomChar = randomCharset[randomNumberGenerator.GenerateRandomNumber(0, randomCharset.Length)];
                 if (!passwordChars.Contains(randomChar))
                 {

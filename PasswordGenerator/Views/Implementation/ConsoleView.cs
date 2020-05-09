@@ -73,7 +73,7 @@ namespace PasswordGenerator.Views
             Console.WriteLine("Password Generator version 1.0\n");
             Console.WriteLine("Application lets generate password based on type chosen by user.");
             Console.WriteLine("Available password types:");
-            Console.WriteLine("- simple -> consists of letters (only lowercase)");
+            Console.WriteLine("- simple -> consists of letters (only lowercase) and numbers");
             Console.WriteLine("- medium -> consists of letters (lowercase and uppercase) and numbers");
             Console.WriteLine("- strong -> consists of letters (lowercase and uppercase), numbers and special characters");
             Console.WriteLine("Press any key to continue.");
