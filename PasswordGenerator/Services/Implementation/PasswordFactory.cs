@@ -54,6 +54,9 @@ namespace PasswordGenerator.Services
         /// <returns>Generated password.</returns>
         public string GeneratePassword(PasswordSettings passwordSettings)
         {
+            if (passwordSettings.PasswordLength <= 0)
+                throw new ArgumentException();
+
             return passwordSettings.PasswordType switch
             {
                 PasswordType.Simple => GenerateSimplePassword(passwordSettings.PasswordLength),
@@ -107,7 +110,7 @@ namespace PasswordGenerator.Services
 
             while (index < passwordLength)
             {
-                string randomCharset = charsTable[randomNumberGenerator.GenerateRandomNumber(0, charsTable.Length)];
+                string randomCharset = charsTable[randomNumberGenerator.GenerateRandomNumber(0, charsTable.Length-1)];
                 char randomChar = randomCharset[randomNumberGenerator.GenerateRandomNumber(0, randomCharset.Length)];
                 if (!passwordChars.Contains(randomChar))
                 {

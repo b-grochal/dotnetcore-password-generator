@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-using PasswordGenerator.Helpers;
 using PasswordGenerator.Services;
 using System;
 using System.Collections.Generic;
