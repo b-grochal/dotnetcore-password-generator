@@ -50,7 +50,7 @@ namespace PasswordGenerator.Services
         /// <returns>Generated password.</returns>
         public string GeneratePassword(PasswordSettings passwordSettings)
         {
-            if (passwordSettings.PasswordLength <= 0)
+            if (passwordSettings.PasswordLength < 4)
                 throw new ArgumentException();
 
             return passwordSettings.PasswordType switch

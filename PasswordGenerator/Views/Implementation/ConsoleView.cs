@@ -91,11 +91,11 @@ namespace PasswordGenerator.Views
         private int GetPasswordLength()
         {
             int passwordLength;
-            Console.Write("Enter password's length: ");
-            while (!int.TryParse(Console.ReadLine(), out passwordLength) || passwordLength <= 0)
+            Console.Write("Enter password's length (minimum 4 chars): ");
+            while (!int.TryParse(Console.ReadLine(), out passwordLength) || passwordLength < 4)
             {
                 Console.WriteLine("Invalid password's length!");
-                Console.Write("Enter password's length: ");
+                Console.Write("Enter password's length (minimum 4 chars): ");
             }
             return passwordLength;
         }

@@ -103,7 +103,7 @@ namespace PasswordGenerator.Tests
         }
 
         [Test]
-        public void GeneratePassword_WhenInputPasswordLengthIsNotPositive_ShouldThrowArgumentException()
+        public void GeneratePassword_WhenInputPasswordLengthIsLessThan4_ShouldThrowArgumentException()
         {
             var passwordFactory = new PasswordFactory(new RandomNumberGenerator(), new PasswordCharsetFactory());
             var passwordDetails = new PasswordSettings()
@@ -114,19 +114,5 @@ namespace PasswordGenerator.Tests
 
             Assert.Throws<ArgumentException>(() => passwordFactory.GeneratePassword(passwordDetails));
         }
-
-        public void GeneratePassword_WhenInputPasswordLengthIsEqualToZero_ShouldThrowArgumentException()
-        {
-            var passwordFactory = new PasswordFactory(new RandomNumberGenerator(), new PasswordCharsetFactory());
-            var passwordDetails = new PasswordSettings()
-            {
-                PasswordLength = 0,
-                PasswordType = PasswordType.Strong
-            };
-
-            Assert.Throws<ArgumentException>(() => passwordFactory.GeneratePassword(passwordDetails));
-        }
-
-
     }
 }
