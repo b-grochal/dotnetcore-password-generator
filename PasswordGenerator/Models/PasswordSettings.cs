@@ -5,7 +5,7 @@ using System.Text;
 namespace PasswordGenerator.Models
 {
     /// <summary>
-    /// Represents password details used during password generation process.
+    /// Represents password details.
     /// </summary>
     public class PasswordSettings
     {

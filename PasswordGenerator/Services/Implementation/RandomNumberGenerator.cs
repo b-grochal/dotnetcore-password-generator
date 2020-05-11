@@ -6,7 +6,7 @@ using System.Text;
 namespace PasswordGenerator.Services
 {
     /// <summary>
-    /// Represents random number geneartor.
+    /// Represents class responsible for generating random numbers.
     /// </summary>
     public class RandomNumberGenerator : IDisposable, IRandomNumberGenerator
     {
@@ -44,9 +44,9 @@ namespace PasswordGenerator.Services
             if (minValue >= maxValue || minValue < 0 || maxValue < 0)
                 throw new ArgumentException();
 
-            byte[] randomGeneratdeBytes = new byte[sizeof(int)];
+            var randomGeneratdeBytes = new byte[sizeof(int)];
             rngCryptoServiceProvider.GetBytes(randomGeneratdeBytes);
-            int randomNumber = BitConverter.ToInt32(randomGeneratdeBytes);
+            var randomNumber = BitConverter.ToInt32(randomGeneratdeBytes);
             return (int)(minValue + Math.Abs((randomNumber % (maxValue - minValue))));
         }
 

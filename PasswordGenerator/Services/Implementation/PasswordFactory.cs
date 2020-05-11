@@ -73,20 +73,20 @@ namespace PasswordGenerator.Services
         /// <returns>Generated password.</returns>
         private string GenerateSimplePassword(int passwordLength)
         {
-            List<char> passwordChars = new List<char>();
+            var passwordChars = new List<char>();
             var passwordCharset = passwordCharsetFactory.GetSimplePasswordCharset();
 
-            foreach(string s in passwordCharset)
+            foreach(var s in passwordCharset)
             {
                 passwordChars.Add(s[randomNumberGenerator.GenerateRandomNumber(0, s.Length)]);
             }
 
-            int index = passwordChars.Count;
+            var index = passwordChars.Count;
 
             while (index < passwordLength)
             {
-                string randomCharset = passwordCharset[randomNumberGenerator.GenerateRandomNumber(0, passwordCharset.Length)];
-                char randomChar = randomCharset[randomNumberGenerator.GenerateRandomNumber(0, randomCharset.Length)];
+                var randomCharset = passwordCharset[randomNumberGenerator.GenerateRandomNumber(0, passwordCharset.Length)];
+                var randomChar = randomCharset[randomNumberGenerator.GenerateRandomNumber(0, randomCharset.Length)];
                 if (!passwordChars.Contains(randomChar))
                 {
                     passwordChars.Add(randomChar);
@@ -104,20 +104,20 @@ namespace PasswordGenerator.Services
         /// <returns>Generated password.</returns>
         private string GenerateMediumPassword(int passwordLength)
         {
-            List<char> passwordChars = new List<char>();
+            var passwordChars = new List<char>();
             var passwordCharset = passwordCharsetFactory.GetMediumPasswordCharset();
 
-            foreach (string s in passwordCharset)
+            foreach (var s in passwordCharset)
             {
                 passwordChars.Add(s[randomNumberGenerator.GenerateRandomNumber(0, s.Length)]);
             }
 
-            int index = passwordChars.Count;
+            var index = passwordChars.Count;
 
             while (index < passwordLength)
             {
-                string randomCharset = passwordCharset[randomNumberGenerator.GenerateRandomNumber(0, passwordCharset.Length)];
-                char randomChar = randomCharset[randomNumberGenerator.GenerateRandomNumber(0, randomCharset.Length)];
+                var randomCharset = passwordCharset[randomNumberGenerator.GenerateRandomNumber(0, passwordCharset.Length)];
+                var randomChar = randomCharset[randomNumberGenerator.GenerateRandomNumber(0, randomCharset.Length)];
                 if (!passwordChars.Contains(randomChar))
                 {
                     passwordChars.Add(randomChar);
@@ -135,20 +135,20 @@ namespace PasswordGenerator.Services
         /// <returns>Generated password.</returns>
         private string GenerateStrongPassword(int passwordLength)
         {
-            List<char> passwordChars = new List<char>();
+            var passwordChars = new List<char>();
             var passwordCharset = passwordCharsetFactory.GetStrongPasswordCharset();
 
-            foreach (string s in passwordCharset)
+            foreach (var s in passwordCharset)
             {
                 passwordChars.Add(s[randomNumberGenerator.GenerateRandomNumber(0, s.Length)]);
             }
 
-            int index = passwordChars.Count;
+            var index = passwordChars.Count;
 
             while (index < passwordLength)
             {
-                string randomCharset = passwordCharset[randomNumberGenerator.GenerateRandomNumber(0, passwordCharset.Length)];
-                char randomChar = randomCharset[randomNumberGenerator.GenerateRandomNumber(0, randomCharset.Length)];
+                var randomCharset = passwordCharset[randomNumberGenerator.GenerateRandomNumber(0, passwordCharset.Length)];
+                var randomChar = randomCharset[randomNumberGenerator.GenerateRandomNumber(0, randomCharset.Length)];
                 if (!passwordChars.Contains(randomChar))
                 {
                     passwordChars.Add(randomChar);

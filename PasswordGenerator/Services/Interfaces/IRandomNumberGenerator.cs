@@ -1,7 +1,7 @@
 ﻿namespace PasswordGenerator.Services
 {
     /// <summary>
-    /// Represents random number geneartor.
+    /// Represents class responsible for generating random numbers.
     /// </summary>
     public interface IRandomNumberGenerator
     {

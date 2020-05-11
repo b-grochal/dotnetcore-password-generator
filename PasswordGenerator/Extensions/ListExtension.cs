@@ -21,12 +21,12 @@ namespace PasswordGenerator.Extensions
         public static IList<char> Shuffle(this IList<char> source)
         {
             using RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
-            int n = source.Count;
+            var n = source.Count;
             while (n > 1)
             {
                 n--;
-                int k = randomNumberGenerator.GenerateRandomNumber(0, n + 1);
-                char c = source[k];
+                var k = randomNumberGenerator.GenerateRandomNumber(0, n + 1);
+                var c = source[k];
                 source[k] = source[n];
                 source[n] = c;
             }

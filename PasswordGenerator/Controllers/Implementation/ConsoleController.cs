@@ -20,7 +20,7 @@ namespace PasswordGenerator.Controllers
         private readonly IView view;
 
         /// <summary>
-        /// Password factory responsible for generating passwords.
+        /// Passwords' factory responsible for generating passwords.
         /// </summary>
         private readonly IPasswordFactory factory;
 
@@ -32,7 +32,7 @@ namespace PasswordGenerator.Controllers
         /// Initializes new instance of the <see cref="ConsoleController"/> class.
         /// </summary>
         /// <param name="view">Application's view.</param>
-        /// <param name="passwordFactory">Password factory.</param>
+        /// <param name="passwordFactory">Passwords' factory.</param>
         public ConsoleController(IView view, IPasswordFactory passwordFactory)
         {
             this.view = view;
