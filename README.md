@@ -2,10 +2,10 @@
 
 ## General info
 Console password generator for generating three types of passwords:
-simple password (lowercase letters and numbers), medium password (lowercase and uppercase letters with numbers) or strong password (lowercase and uppercase letters with numbers and special charcters. Project was created to learn dependency injection with Autofac and unit tests with NUnit.
+simple password (lowercase letters and numbers), medium password (lowercase and uppercase letters with numbers) or strong password (lowercase and uppercase letters with numbers and special charcters). Project was created to learn dependency injection with Autofac and unit tests with NUnit.
 
 ## Screenshots
-![Example screenshot](./img/screen.png)
+![Example screenshot](.screen.png)
 
 ## Technologies
 * .NET Core 3.1
@@ -15,6 +15,3 @@ simple password (lowercase letters and numbers), medium password (lowercase and 
 
 ## Status
 Project is: _finished_.
-
-## Contact
-Created by Bartosz Grochal.
