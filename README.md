@@ -1,5 +1,5 @@
 # Password Generator
-> Simple comsole password generator build with .NET Core 3.1
+> Simple console password generator build with .NET Core 3.1
 
 ## General info
 Console password generator for generating three types of passwords:
