@@ -5,9 +5,9 @@
 Console password generator which is able to generate three types of passwords:
 * simple password (lowercase letters and numbers)
 * medium password (lowercase and uppercase letters with numbers) 
-*strong password (lowercase and uppercase letters with numbers and special charcters).
+* strong password (lowercase and uppercase letters with numbers and special charcters).
 
-The usage of this password generator is based on typing specified commands in console like 'generate' or 'help'. Password generation process relys on factory pattern so it's project is easy to expand by the new types of passwords. Project was created to learn dependency injection with Autofac and unit tests with NUnit.
+The usage of this password generator is based on typing specified commands in console like 'generate' or 'help'. Password generation process relys on factory pattern so it's project is easy to expand by the new types of passwords. Project was created to learn dependency injection with Autofac and unit tests with NUnit. Project contains also batch files with .NET Core CLI commands for publishing application.
 
 ## Screenshots
 ![Example screenshot](screen.png)
